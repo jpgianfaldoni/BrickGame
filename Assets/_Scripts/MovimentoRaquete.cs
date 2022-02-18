@@ -6,9 +6,10 @@ public class MovimentoRaquete : MonoBehaviour
 {
     // Start is called before the first frame update
     [Range(1, 15)]
-    public float velocidade = 5.0f;
+    public float velocidade = 8.0f;
     GameManager gm;
-
+    public int firstStep = 0;
+    public int secondStep = 0;
     void Start()
     {
         gm = GameManager.GetInstance();
@@ -31,6 +32,14 @@ void Update()
         }
         if(Input.GetKeyDown(KeyCode.Escape) && gm.gameState == GameManager.GameState.GAME) {
         gm.ChangeState(GameManager.GameState.PAUSE);
+        }
+        if(gm.pontos == 10 && firstStep == 0){
+            transform.localScale -= new Vector3(0.5f, 0, 0);
+            firstStep = 1;
+        }
+        if(gm.pontos == 20 && secondStep == 0){
+            transform.localScale -= new Vector3(0.5f, 0, 0);
+            secondStep = 1;
         }
 
     }

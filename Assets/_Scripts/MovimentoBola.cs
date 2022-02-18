@@ -34,10 +34,17 @@ public class MovimentoBola : MonoBehaviour
         {
             if(col.gameObject.CompareTag("Player"))
             {
-                float dirX = Random.Range(-5.0f, 5.0f);
-                float dirY = Random.Range(1.0f, 5.0f);
-                direcao = new Vector3(dirX, dirY).normalized;
-                gm.pontos++;
+                var raquetePosition = GameObject.Find("Raquete").transform.position;
+                //positivo esquerda
+                //negativo direita
+                var distanceRaqueteBola = (raquetePosition.x - transform.position.x);
+                if(distanceRaqueteBola > 0){
+                    direcao = new Vector3(direcao.x, -direcao.y);
+                }
+                else{
+                    direcao = new Vector3(-direcao.x, -direcao.y);
+                }
+              
             }
             else if(col.gameObject.CompareTag("Bloco"))
             {
